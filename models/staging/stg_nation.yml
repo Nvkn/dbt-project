@@ -6,19 +6,28 @@ models:
     columns:
       - name: N_NATIONKEY
         description: "Clave primaria de la nación."
+        constraints:
+          - type: primary_key
+          - type: unique
         tests:
           - unique
           - not_null
 
       - name: N_NAME
         description: "Nombre de la nación."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: N_REGIONKEY
         description: "Clave foránea que referencia a la región asociada con la nación."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.regions (R_REGIONKEY)"
         tests:
           - not_null
-          - foreign_key:
-              to: ref('stg_region')
+          - relationships:
               field: R_REGIONKEY
+              to: ref('stg_region')
