@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: stg_nation
+    description: "Naciones obtenidas de la tabla RAW Nation de Snowflake Sample Data TPCH_SF1."
+    columns:
+      - name: N_NATIONKEY
+        description: "Clave primaria de la nación."
+        tests:
+          - unique
+          - not_null
+
+      - name: N_NAME
+        description: "Nombre de la nación."
+        tests:
+          - not_null
+
+      - name: N_REGIONKEY
+        description: "Clave foránea que referencia a la región asociada con la nación."
+        tests:
+          - not_null
+          - foreign_key:
+              to: ref('stg_region')
+              field: R_REGIONKEY

@@ -1,4 +1,4 @@
--- models/staging/stg_customers.sql
+-- models/staging/stg_customer.sql
 
 {{ config(
     materialized='incremental',

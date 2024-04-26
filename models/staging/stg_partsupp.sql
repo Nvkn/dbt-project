@@ -6,12 +6,9 @@
 ) }}
 
 SELECT
-  P_PARTKEY,
-  P_NAME,
-  P_MFGR,
-  P_BRAND,
-  P_TYPE,
-  P_SIZE,
-  P_CONTAINER,
-  P_RETAILPRICE
+  PS_PARTKEY,
+  PS_SUPPKEY,
+  PS_AVAILQTY,
+  PS_SUPPLYCOST,
+  PS_COMMENT
 FROM {{ source('db_source', 'partsupp') }}

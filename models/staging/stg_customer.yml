@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_customer
+    description: "Clientes obtenidos de la tabla RAW Customers de Snowflake Sample Data TPCH_SF1."
+    columns:
+      - name: C_CUSTKEY
+        description: "Clave primaria del cliente."
+        tests:
+          - unique
+          - not_null
+
+      - name: C_NAME
+        description: "Nombre del cliente."
+        tests:
+          - not_null
+
+      - name: C_ADDRESS
+        description: "Dirección del cliente."
+        tests:
+          - not_null
+
+      - name: C_PHONE
+        description: "Número de teléfono del cliente."
+        tests:
+          - not_null
+
+      - name: C_NATIONKEY
+        description: "Clave foránea que referencia a la nación del cliente."
+        tests:
+          - not_null
+          - foreign_key:
+              to: ref('stg_nations')
+              field: N_NATIONKEY
+
+      - name: C_ACCTBAL
+        description: "Saldo de cuenta del cliente."
+
+      - name: C_MKTSEGMENT
+        description: "Segmento de mercado del cliente."
+        tests:
+          - not_null
