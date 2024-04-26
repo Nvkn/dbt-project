@@ -2,8 +2,12 @@
 
 {{ config(
     materialized='incremental',
+<<<<<<< HEAD
     unique_key='O_ORDERKEY',
     
+=======
+    unique_key='O_ORDERKEY'
+>>>>>>> 75a8ff44a388bc04dd3bd15a2c1a3d64a83b7ea9
 ) }}
 
 WITH new_orders AS (
