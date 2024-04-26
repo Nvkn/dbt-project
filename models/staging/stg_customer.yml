@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_customer
-    description: "Customers obtenidos de la tabla RAW Snowflake Sample Data TPCH_SF1."
+    description: "Clientes obtenidos de la tabla RAW Customers de Snowflake Sample Data TPCH_SF1."
     columns:
       - name: C_CUSTKEY
         description: "Clave primaria del cliente."
