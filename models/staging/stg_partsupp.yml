@@ -44,6 +44,3 @@ models:
     constraints:
       - type: primary_key
         columns: [PS_PARTKEY, PS_SUPPKEY]
-    
-  
-
