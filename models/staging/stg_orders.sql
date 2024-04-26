@@ -3,7 +3,7 @@
 {{ config(
     materialized='incremental',
     unique_key='O_ORDERKEY',
-    depends_on = {{ ref('stg_customers') }}
+    
 ) }}
 
 WITH new_orders AS (

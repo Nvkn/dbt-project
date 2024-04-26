@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: tpch_sf1
-    database: snowflake_sample_data
-    schema: tpch_sf1
+    database: DB_SOURCE
+    schema: DB_SOURCE_SCHEMA
     tables:
       - name: customer
       - name: orders
