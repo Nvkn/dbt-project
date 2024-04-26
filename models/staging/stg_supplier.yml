@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: stg_supplier
+    description: "Datos de proveedores obtenidos de la tabla 'supplier'."
+    columns:
+      - name: S_SUPPKEY
+        description: "Clave primaria del proveedor."
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+
+      - name: S_NAME
+        description: "Nombre del proveedor."
+        tests:
+          - not_null
+
+      - name: S_ADDRESS
+        description: "Dirección del proveedor."
+        tests:
+          - not_null
+
+      - name: S_NATIONKEY
+        description: "Clave foránea que referencia a la nación del proveedor."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_nation (N_NATIONKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: N_NATIONKEY
+              to: ref('stg_nation')
+
+      - name: S_PHONE
+        description: "Número de teléfono del proveedor."
+        tests:
+          - not_null
+
+      - name: S_ACCTBAL
+        description: "Saldo de cuenta del proveedor."
