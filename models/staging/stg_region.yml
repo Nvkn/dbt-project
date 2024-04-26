@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: stg_region
+    description: "Regiones obtenidas de la tabla RAW Region de Snowflake Sample Data TPCH_SF1."
+    columns:
+      - name: R_REGIONKEY
+        description: "Clave primaria de la región."
+        tests:
+          - unique
+          - not_null
+
+      - name: R_NAME
+        description: "Nombre de la región."
+        tests:
+          - not_null

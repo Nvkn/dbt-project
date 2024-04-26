@@ -35,6 +35,8 @@ models:
 
       - name: C_ACCTBAL
         description: "Saldo de cuenta del cliente."
+        tests:
+          - not null
 
       - name: C_MKTSEGMENT
         description: "Segmento de mercado del cliente."
