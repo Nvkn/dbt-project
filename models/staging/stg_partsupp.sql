@@ -9,6 +9,5 @@ SELECT
   PS_PARTKEY,
   PS_SUPPKEY,
   PS_AVAILQTY,
-  PS_SUPPLYCOST,
-  PS_COMMENT
+  PS_SUPPLYCOST
 FROM {{ source('db_source', 'partsupp') }}
