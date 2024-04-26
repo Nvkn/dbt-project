@@ -6,17 +6,23 @@ models:
     columns:
       - name: O_ORDERKEY
         description: "Clave primaria del pedido."
+        constraints:
+          - type: primary_key
         tests:
           - unique
           - not_null
 
       - name: O_CUSTKEY
         description: "Clave foránea que referencia al cliente."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_customer (C_CUSTKEY)"
         tests:
           - not_null
-          - foreign_key:
-              to: ref('stg_customers')
+          - relationships:
               field: C_CUSTKEY
+              to: ref('stg_customer')
 
       - name: O_ORDERSTATUS
         description: "Estado del pedido."
