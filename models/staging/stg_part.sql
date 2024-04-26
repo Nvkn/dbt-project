@@ -1,4 +1,4 @@
--- models/staging/stg_parts.sql
+-- models/staging/stg_part.sql
 
 {{ config(
     materialized='incremental',
@@ -14,4 +14,4 @@ SELECT
   P_SIZE,
   P_CONTAINER,
   P_RETAILPRICE
-FROM {{ source('db_source', 'parts') }}
+FROM {{ source('db_source', 'part') }}
