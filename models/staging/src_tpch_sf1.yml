@@ -1,15 +1,9 @@
 version: 2
 
 sources:
-<<<<<<< HEAD
-  - name: tpch_sf1
-    database: DB_SOURCE
-    schema: DB_SOURCE_SCHEMA
-=======
   - name: db_source
     database: db_source
     schema: db_source_schema
->>>>>>> 75a8ff44a388bc04dd3bd15a2c1a3d64a83b7ea9
     tables:
       - name: customer
       - name: orders
