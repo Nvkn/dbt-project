@@ -8,7 +8,6 @@ models:
         description: "Clave primaria de la nación."
         constraints:
           - type: primary_key
-          - type: unique
         tests:
           - unique
           - not_null
@@ -25,9 +24,9 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.regions (R_REGIONKEY)"
+            expression: "dbt_staging.stg_region (R_REGIONKEY)"
         tests:
           - not_null
           - relationships:
-              field: R_REGIONKEY
               to: ref('stg_region')
+              field: R_REGIONKEY

@@ -6,39 +6,56 @@ models:
     columns:
       - name: C_CUSTKEY
         description: "Clave primaria del cliente."
+        constraints:
+          - type: primary_key
         tests:
           - unique
           - not_null
 
       - name: C_NAME
         description: "Nombre del cliente."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: C_ADDRESS
         description: "Dirección del cliente."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: C_PHONE
         description: "Número de teléfono del cliente."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: C_NATIONKEY
         description: "Clave foránea que referencia a la nación del cliente."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_nation (N_NATIONKEY)"
         tests:
           - not_null
-          - foreign_key:
-              to: ref('stg_nations')
+          - relationships:
+              to: ref('stg_nation')
               field: N_NATIONKEY
 
       - name: C_ACCTBAL
         description: "Saldo de cuenta del cliente."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: C_MKTSEGMENT
         description: "Segmento de mercado del cliente."
+        constraints:
+          - type: not_null
+          
         tests:
           - not_null
