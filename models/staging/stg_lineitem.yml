@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: stg_lineitem
+    description: "Datos de elementos de línea obtenidos de la tabla 'lineitem'."
+    columns:
+      - name: L_ORDERKEY
+        description: "Clave foránea que referencia al pedido."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_orders (O_ORDERKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: O_ORDERKEY
+              to: ref('stg_orders')
+
+      - name: L_PARTKEY
+        description: "Clave foránea que referencia a la parte."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_part (P_PARTKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: P_PARTKEY
+              to: ref('stg_part')
+
+      - name: L_SUPPKEY
+        description: "Clave foránea que referencia al proveedor."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_supplier (S_SUPPKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: S_SUPPKEY
+              to: ref('stg_supplier')
+
+      - name: L_LINENUMBER
+        description: "Número de línea."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_QUANTITY
+        description: "Cantidad."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_EXTENDEDPRICE
+        description: "Precio extendido."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_DISCOUNT
+        description: "Descuento."
+
+      - name: L_TAX
+        description: "Impuesto."
+
+      - name: L_RETURNFLAG
+        description: "Indicador de devolución."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_LINESTATUS
+        description: "Estado de la línea."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_SHIPDATE
+        description: "Fecha de envío."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_COMMITDATE
+        description: "Fecha de compromiso."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_RECEIPTDATE
+        description: "Fecha de recepción."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_SHIPINSTRUCT
+        description: "Instrucción de envío."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: L_SHIPMODE
+        description: "Modo de envío."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
