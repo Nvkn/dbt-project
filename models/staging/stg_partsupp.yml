@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_partsupp
+    description: "Datos de proveedor de partes obtenidos de la tabla 'partsupp'."
+    columns:
+      - name: PS_PARTKEY
+        description: "Clave foránea que referencia a la parte."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_part (P_PARTKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: P_PARTKEY
+              to: ref('stg_part')
+
+      - name: PS_SUPPKEY
+        description: "Clave foránea que referencia al proveedor."
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "dbt_staging.stg_supplier (S_SUPPKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: S_SUPPKEY
+              to: ref('stg_supplier')
+
+      - name: PS_AVAILQTY
+        description: "Cantidad disponible de la parte."
+        tests:
+          - not_null
+
+      - name: PS_SUPPLYCOST
+        description: "Costo de suministro de la parte."
+        tests:
+          - not_null
+
+      - name: PS_COMMENT
+        description: "Comentario sobre la parte."
+  
+    constraints:
+      - type: primary_key
+        columns: [PS_PARTKEY, PS_SUPPKEY]
+    
+  
+
