@@ -19,20 +19,6 @@ models:
         tests:
           - not_null
 
-      - name: C_ADDRESS
-        description: "Dirección del cliente."
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
-
-      - name: C_PHONE
-        description: "Número de teléfono del cliente."
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
-
       - name: C_NATIONKEY
         description: "Clave foránea que referencia a la nación del cliente."
         constraints:

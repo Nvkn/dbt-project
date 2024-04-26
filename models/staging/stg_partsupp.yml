@@ -2,10 +2,10 @@ version: 2
 
 models:
   - name: stg_partsupp
-    description: "Datos de proveedor de partes obtenidos de la tabla 'partsupp'."
+    description: "Relaciones entre proveedores y productos obtenidas de la tabla RAW Partsupp de Snowflake Sample Data TPCH_SF1."
     columns:
       - name: PS_PARTKEY
-        description: "Clave foránea que referencia a la parte."
+        description: "Clave foránea que referencia al producto."
         constraints:
           - type: not_null
           - type: foreign_key
@@ -29,17 +29,14 @@ models:
               to: ref('stg_supplier')
 
       - name: PS_AVAILQTY
-        description: "Cantidad disponible de la parte."
+        description: "Cantidad disponible del producto."
         tests:
           - not_null
 
       - name: PS_SUPPLYCOST
-        description: "Costo de suministro de la parte."
+        description: "Costo de suministro del producto."
         tests:
           - not_null
-
-      - name: PS_COMMENT
-        description: "Comentario sobre la parte."
   
     constraints:
       - type: primary_key
