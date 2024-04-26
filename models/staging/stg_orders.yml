@@ -26,29 +26,35 @@ models:
 
       - name: O_ORDERSTATUS
         description: "Estado del pedido."
+        constraints:
+          - type: not_null 
         tests:
           - not_null
 
       - name: O_TOTALPRICE
         description: "Precio total del pedido."
+        constraints:
+          - type: not_null 
         tests:
           - not_null
 
       - name: O_ORDERDATE
         description: "Fecha del pedido."
+        constraints:
+          - type: not_null 
         tests:
           - not_null
 
       - name: O_ORDERPRIORITY
         description: "Prioridad del pedido."
+        constraints:
+          - type: not_null 
         tests:
           - not_null
 
       - name: O_CLERK
         description: "Cajero del pedido."
+        constraints:
+          - type: not_null 
         tests:
           - not_null
-
-    constraints:
-      - type: primary_key
-        columns: [L_ORDERKEY, L_LINENUMBER]
