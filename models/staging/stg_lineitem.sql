@@ -2,7 +2,7 @@
 
 {{ config(
     materialized='incremental',
-    unique_key='L_ORDERKEY'
+    unique_key=['L_ORDERKEY'
 ) }}
 
 SELECT
