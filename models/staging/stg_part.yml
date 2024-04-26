@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: stg_part
+    description: "Productos obtenidos de la tabla RAW Part de Snowflake Sample Data TPCH_SF1."
+    columns:
+      - name: P_PARTKEY
+        description: "Clave primaria de la parte."
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+
+      - name: P_NAME
+        description: "Nombre de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_MFGR
+        description: "Fabricante de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_BRAND
+        description: "Marca de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_TYPE
+        description: "Tipo de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_SIZE
+        description: "Tamaño de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_CONTAINER
+        description: "Tipo de contenedor de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: P_RETAILPRICE
+        description: "Precio de venta al por menor de la parte."
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
