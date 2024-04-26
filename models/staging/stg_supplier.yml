@@ -14,11 +14,8 @@ models:
 
       - name: S_NAME
         description: "Nombre del proveedor."
-        tests:
-          - not_null
-
-      - name: S_ADDRESS
-        description: "Dirección del proveedor."
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
@@ -33,11 +30,6 @@ models:
           - relationships:
               field: N_NATIONKEY
               to: ref('stg_nation')
-
-      - name: S_PHONE
-        description: "Número de teléfono del proveedor."
-        tests:
-          - not_null
 
       - name: S_ACCTBAL
         description: "Saldo de cuenta del proveedor."

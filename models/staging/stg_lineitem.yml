@@ -116,3 +116,6 @@ models:
         tests:
           - not_null
 
+    constraints:
+      - type: primary_key
+        columns: [L_ORDERKEY, L_LINENUMBER]
