@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Datos de pedidos obtenidos de la tabla 'orders'."
+    columns:
+      - name: O_ORDERKEY
+        description: "Clave primaria del pedido."
+        tests:
+          - unique
+          - not_null
+
+      - name: O_CUSTKEY
+        description: "Clave foránea que referencia al cliente."
+        tests:
+          - not_null
+          - foreign_key:
+              to: ref('stg_customers')
+              field: C_CUSTKEY
+
+      - name: O_ORDERSTATUS
+        description: "Estado del pedido."
+        tests:
+          - not_null
+
+      - name: O_TOTALPRICE
+        description: "Precio total del pedido."
+        tests:
+          - not_null
+
+      - name: O_ORDERDATE
+        description: "Fecha del pedido."
+        tests:
+          - not_null
+
+      - name: O_ORDERPRIORITY
+        description: "Prioridad del pedido."
+        tests:
+          - not_null
+
+      - name: O_CLERK
+        description: "Cajero del pedido."
+        tests:
+          - not_null
