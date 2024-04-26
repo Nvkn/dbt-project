@@ -6,11 +6,15 @@ models:
     columns:
       - name: R_REGIONKEY
         description: "Clave primaria de la región."
+        constraints:
+          - type: primary_key
         tests:
           - unique
           - not_null
 
       - name: R_NAME
         description: "Nombre de la región."
+        constraints:
+          - type: not_null
         tests:
           - not_null
