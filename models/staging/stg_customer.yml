@@ -41,7 +41,6 @@ models:
       - name: C_MKTSEGMENT
         description: "Segmento de mercado del cliente."
         constraints:
-          - type: not_null
-          
+          - type: not_null 
         tests:
           - not_null
