@@ -1,5 +1,4 @@
-storekey, name, nation_name
-storekey,name,nation_name
+st_storekey, st_name, st_nation_name
 1,Prime Mart,ALGERIA
 2,Global Emporium,ARGENTINA
 3,Trade Center,BRAZIL
