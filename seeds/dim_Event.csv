@@ -1,4 +1,4 @@
-eventkey,name,nation_name,start_date,end_date
+e_eventkey,e_name,e_nation_name,e_start_date,e_end_date
 1,Algerian Expo,ALGERIA,1992-05-10,1992-05-15
 2,Argentinian Festival,ARGENTINA,1992-06-01,1992-06-07
 3,Brazilian Carnival,BRAZIL,1992-07-10,1992-07-15

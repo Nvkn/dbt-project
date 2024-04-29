@@ -45,3 +45,7 @@ models:
     intermediate:
       +schema: intermediate
       +materialized: incremental
+
+seeds:
+  final_project:
+    +schema: intermediate
