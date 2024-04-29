@@ -6,6 +6,7 @@ models:
     columns:
       - name: PS_PARTKEY
         description: "Clave foránea que referencia al producto."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
@@ -18,6 +19,7 @@ models:
 
       - name: PS_SUPPKEY
         description: "Clave foránea que referencia al proveedor."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
@@ -30,11 +32,13 @@ models:
 
       - name: PS_AVAILQTY
         description: "Cantidad disponible del producto."
+        data_type: integer
         tests:
           - not_null
 
       - name: PS_SUPPLYCOST
         description: "Costo de suministro del producto."
+        data_type: decimal
         tests:
           - not_null
   
