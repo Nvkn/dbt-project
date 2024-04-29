@@ -1,0 +1,58 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Tabla de dimensión que contiene información sobre los clientes."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
+    columns:
+      - name: C_CUSTKEY
+        description: "Clave primaria del cliente."
+        data_type: integer
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+
+      - name: C_NAME
+        description: "Nombre del cliente."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: N_NAME
+        description: "Nombre de la nación del cliente."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: R_NAME
+        description: "Nombre de la región del cliente."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: C_ACCTBAL
+        description: "Saldo de la cuenta del cliente."
+        data_type: decimal
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: C_MKTSEGMENT
+        description: "Segmento de mercado del cliente."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null

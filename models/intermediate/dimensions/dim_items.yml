@@ -3,6 +3,10 @@ version: 2
 models:
   - name: dim_items
     description: "Tabla de dimensión que contiene información sobre los ítems."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: I_ITEMKEY
         description: "Clave primaria del producto."
