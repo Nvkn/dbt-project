@@ -4,57 +4,30 @@ models:
   - name: stg_orders
     description: "Datos de pedidos obtenidos de la tabla 'orders'."
     columns:
-      - name: O_ORDERKEY
-        description: "Clave primaria del pedido."
+      - name: eventkey
+        description: "Clave primaria del evento."
         constraints:
           - type: primary_key
         tests:
           - unique
           - not_null
 
-      - name: O_CUSTKEY
-        description: "Clave foránea que referencia al cliente."
-        constraints:
-          - type: not_null
-          - type: foreign_key
-            expression: "dbt_staging.stg_customer (C_CUSTKEY)"
-        tests:
-          - not_null
-          - relationships:
-              field: C_CUSTKEY
-              to: ref('stg_customer')
-
-      - name: O_ORDERSTATUS
-        description: "Estado del pedido."
-        constraints:
-          - type: not_null 
+      - name: name
+        description: "Nombre del evento."
         tests:
           - not_null
 
-      - name: O_TOTALPRICE
-        description: "Precio total del pedido."
-        constraints:
-          - type: not_null 
+      - name: nation_name
+        description: "Nombre del país donde se lleva a cabo el evento."
         tests:
           - not_null
 
-      - name: O_ORDERDATE
-        description: "Fecha del pedido."
-        constraints:
-          - type: not_null 
+      - name: start_date
+        description: "Fecha de inicio del evento."
         tests:
           - not_null
 
-      - name: O_ORDERPRIORITY
-        description: "Prioridad del pedido."
-        constraints:
-          - type: not_null 
-        tests:
-          - not_null
-
-      - name: O_CLERK
-        description: "Cajero del pedido."
-        constraints:
-          - type: not_null 
+      - name: end_date
+        description: "Fecha de fin del evento."
         tests:
           - not_null
