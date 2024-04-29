@@ -3,9 +3,14 @@ version: 2
 models:
   - name: stg_supplier
     description: "Datos de proveedores obtenidos de la tabla 'supplier'."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: S_SUPPKEY
         description: "Clave primaria del proveedor."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,6 +19,7 @@ models:
 
       - name: S_NAME
         description: "Nombre del proveedor."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -21,10 +27,11 @@ models:
 
       - name: S_NATIONKEY
         description: "Clave foránea que referencia a la nación del proveedor."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_nation (N_NATIONKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.NATION (N_NATIONKEY)"
         tests:
           - not_null
           - relationships:
@@ -33,3 +40,4 @@ models:
 
       - name: S_ACCTBAL
         description: "Saldo de cuenta del proveedor."
+        data_type: decimal

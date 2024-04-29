@@ -50,7 +50,7 @@ models:
 
       - name: I_SIZE
         description: "Tamaño del ítem."
-        data_type: varchar
+        data_type: number
         constraints:
           - type: not_null
         tests:

@@ -3,9 +3,14 @@ version: 2
 models:
   - name: stg_orders
     description: "Datos de pedidos obtenidos de la tabla 'orders'."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: O_ORDERKEY
         description: "Clave primaria del pedido."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,10 +19,11 @@ models:
 
       - name: O_CUSTKEY
         description: "Clave foránea que referencia al cliente."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_customer (C_CUSTKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.CUSTOMER (C_CUSTKEY)"
         tests:
           - not_null
           - relationships:
@@ -26,6 +32,7 @@ models:
 
       - name: O_ORDERSTATUS
         description: "Estado del pedido."
+        data_type: varchar
         constraints:
           - type: not_null 
         tests:
@@ -33,6 +40,7 @@ models:
 
       - name: O_TOTALPRICE
         description: "Precio total del pedido."
+        data_type: decimal
         constraints:
           - type: not_null 
         tests:
@@ -40,6 +48,7 @@ models:
 
       - name: O_ORDERDATE
         description: "Fecha del pedido."
+        data_type: date
         constraints:
           - type: not_null 
         tests:
@@ -47,6 +56,7 @@ models:
 
       - name: O_ORDERPRIORITY
         description: "Prioridad del pedido."
+        data_type: varchar
         constraints:
           - type: not_null 
         tests:
@@ -54,6 +64,7 @@ models:
 
       - name: O_CLERK
         description: "Cajero del pedido."
+        data_type: varchar
         constraints:
           - type: not_null 
         tests:

@@ -3,9 +3,14 @@ version: 2
 models:
   - name: stg_nation
     description: "Naciones obtenidas de la tabla RAW Nation de Snowflake Sample Data TPCH_SF1."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: N_NATIONKEY
         description: "Clave primaria de la nación."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,6 +19,7 @@ models:
 
       - name: N_NAME
         description: "Nombre de la nación."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -21,10 +27,11 @@ models:
 
       - name: N_REGIONKEY
         description: "Clave foránea que referencia a la región asociada con la nación."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_region (R_REGIONKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.REGION (R_REGIONKEY)"
         tests:
           - not_null
           - relationships:
