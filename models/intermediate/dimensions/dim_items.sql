@@ -24,8 +24,8 @@ WITH source_data AS (
     JOIN {{ ref('stg_partsupp') }} ON P_PARTKEY = PS_PARTKEY
     JOIN {{ ref('stg_supplier') }} ON PS_SUPPKEY = S_SUPPKEY
     JOIN {{ ref('stg_nation') }} ON S_NATIONKEY = N_NATIONKEY
-    JOIN {{ ref('stg_nation') }} ON N_REGIONKEY = R_REGIONKEY
+    JOIN {{ ref('stg_region') }} ON N_REGIONKEY = R_REGIONKEY
 )
 
 SELECT *
-FROM source_data;
+FROM source_data
