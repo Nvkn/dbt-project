@@ -6,6 +6,7 @@ models:
     columns:
       - name: R_REGIONKEY
         description: "Clave primaria de la región."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,6 +15,7 @@ models:
 
       - name: R_NAME
         description: "Nombre de la región."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
