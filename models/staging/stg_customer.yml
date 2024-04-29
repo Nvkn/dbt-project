@@ -3,9 +3,14 @@ version: 2
 models:
   - name: stg_customer
     description: "Clientes obtenidos de la tabla RAW Customers de Snowflake Sample Data TPCH_SF1."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: C_CUSTKEY
         description: "Clave primaria del cliente."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,6 +19,7 @@ models:
 
       - name: C_NAME
         description: "Nombre del cliente."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -21,10 +27,11 @@ models:
 
       - name: C_NATIONKEY
         description: "Clave foránea que referencia a la nación del cliente."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_nation (N_NATIONKEY)"
+            expression: "db_source.db_source_schema.nation (N_NATIONKEY)"
         tests:
           - not_null
           - relationships:
@@ -33,6 +40,7 @@ models:
 
       - name: C_ACCTBAL
         description: "Saldo de cuenta del cliente."
+        data_type: decimal
         constraints:
           - type: not_null
         tests:
@@ -40,7 +48,8 @@ models:
 
       - name: C_MKTSEGMENT
         description: "Segmento de mercado del cliente."
+        data_type: varchar
         constraints:
-          - type: not_null 
+          - type: not_null
         tests:
           - not_null

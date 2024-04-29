@@ -1,0 +1,121 @@
+version: 2
+
+models:
+  - name: dim_items
+    description: "Tabla de dimensión que contiene información sobre los ítems."
+    columns:
+      - name: I_ITEMKEY
+        description: "Clave primaria del producto."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_NAME
+        description: "Nombre del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_MFGR
+        description: "Fabricante del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_BRAND
+        description: "Marca del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_TYPE
+        description: "Tipo del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_SIZE
+        description: "Tamaño del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_CONTAINER
+        description: "Contenedor del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_RETAILPRICE
+        description: "Precio minorista del ítem."
+        data_type: decimal
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+      
+      - name: I_SUPPKEY
+        description: "Clave primaria del proveedor."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_SUPPLIER
+        description: "Proveedor del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_SUPPLIERNATION
+        description: "Nación del proveedor del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_SUPPLIERREGION
+        description: "Región del proveedor del ítem."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_AVAILQTY
+        description: "Cantidad disponible del ítem."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: I_SUPPLYCOST
+        description: "Costo de suministro del ítem."
+        data_type: decimal
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+    constraints:
+      - type: primary_key
+        columns: [I_ITEMKEY, I_SUPPKEY]

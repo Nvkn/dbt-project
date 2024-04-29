@@ -3,13 +3,18 @@ version: 2
 models:
   - name: stg_lineitem
     description: "Datos de elementos de línea obtenidos de la tabla 'lineitem'."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: L_ORDERKEY
         description: "Clave foránea que referencia al pedido."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_orders (O_ORDERKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.ORDERS (O_ORDERKEY)"
         tests:
           - not_null
           - relationships:
@@ -18,10 +23,11 @@ models:
 
       - name: L_PARTKEY
         description: "Clave foránea que referencia a la parte."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_part (P_PARTKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.PART (P_PARTKEY)"
         tests:
           - not_null
           - relationships:
@@ -30,10 +36,11 @@ models:
 
       - name: L_SUPPKEY
         description: "Clave foránea que referencia al proveedor."
+        data_type: integer
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "dbt_staging.stg_supplier (S_SUPPKEY)"
+            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.SUPPLIER (S_SUPPKEY)"
         tests:
           - not_null
           - relationships:
@@ -42,6 +49,7 @@ models:
 
       - name: L_LINENUMBER
         description: "Número de línea."
+        data_type: integer
         constraints:
           - type: not_null
         tests:
@@ -49,6 +57,7 @@ models:
 
       - name: L_QUANTITY
         description: "Cantidad."
+        data_type: decimal
         constraints:
           - type: not_null
         tests:
@@ -56,6 +65,7 @@ models:
 
       - name: L_EXTENDEDPRICE
         description: "Precio extendido."
+        data_type: decimal
         constraints:
           - type: not_null
         tests:
@@ -63,12 +73,15 @@ models:
 
       - name: L_DISCOUNT
         description: "Descuento."
+        data_type: decimal
 
       - name: L_TAX
         description: "Impuesto."
+        data_type: decimal
 
       - name: L_RETURNFLAG
         description: "Indicador de devolución."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -76,6 +89,7 @@ models:
 
       - name: L_LINESTATUS
         description: "Estado de la línea."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -83,6 +97,7 @@ models:
 
       - name: L_SHIPDATE
         description: "Fecha de envío."
+        data_type: date
         constraints:
           - type: not_null
         tests:
@@ -90,6 +105,7 @@ models:
 
       - name: L_COMMITDATE
         description: "Fecha de compromiso."
+        data_type: date
         constraints:
           - type: not_null
         tests:
@@ -97,6 +113,7 @@ models:
 
       - name: L_RECEIPTDATE
         description: "Fecha de recepción."
+        data_type: date
         constraints:
           - type: not_null
         tests:
@@ -104,6 +121,7 @@ models:
 
       - name: L_SHIPINSTRUCT
         description: "Instrucción de envío."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
@@ -111,6 +129,7 @@ models:
 
       - name: L_SHIPMODE
         description: "Modo de envío."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
