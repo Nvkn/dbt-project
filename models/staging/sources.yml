@@ -13,3 +13,4 @@ sources:
       - name: supplier
       - name: nation
       - name: region
+      - name: currency_conversion
