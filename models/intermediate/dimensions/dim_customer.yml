@@ -25,7 +25,7 @@ models:
         tests:
           - not_null
 
-      - name: N_NAME
+      - name: C_NATION_NAME
         description: "Nombre de la nación del cliente."
         data_type: varchar
         constraints:
@@ -33,7 +33,7 @@ models:
         tests:
           - not_null
 
-      - name: R_NAME
+      - name: C_REGION_NAME
         description: "Nombre de la región del cliente."
         data_type: varchar
         constraints:
