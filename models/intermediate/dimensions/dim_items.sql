@@ -1,7 +1,8 @@
 -- models/dim_items.sql
 
 {{ config(
-    materialized='incremental'
+    materialized='incremental',
+    unique_key= ['I_ITEMKEY', 'I_SUPPKEY']
 ) }}
 
 WITH source_data AS (

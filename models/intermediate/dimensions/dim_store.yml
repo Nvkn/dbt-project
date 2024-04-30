@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_store
+    description: "Datos de las tiendas"
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
+    columns:
+      - name: st_storekey
+        description: "Clave primaria de la tienda."
+        data_type: integer
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+
+      - name: st_name
+        description: "Nombre de la tienda."
+        data_type: varchar
+        constraints:
+          - type: not_null 
+        tests:
+          - not_null
+
+      - name: st_nation_name
+        description: "Nombre del país donde está localizada la tienda."
+        data_type: varchar
+        constraints:
+          - type: not_null 
+        tests:
+          - not_null
