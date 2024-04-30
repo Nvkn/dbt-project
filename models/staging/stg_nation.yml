@@ -37,3 +37,11 @@ models:
           - relationships:
               to: ref('stg_region')
               field: R_REGIONKEY
+      
+      - name: N_USD_TO_LOCAL
+        description: "Tasa de cambio de USD a la moneda local."
+        data_type: float
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
