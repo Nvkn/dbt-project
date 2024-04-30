@@ -1,11 +1,16 @@
 version: 2
 
-seeds:
-  - name: dim_Event
-    description: "Datos de eventos generados mediante el archivo seed"
+models:
+  - name: dim_event
+    description: "Datos de eventos"
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: e_eventkey
         description: "Clave primaria del evento."
+        data_type: integer
         constraints:
           - type: primary_key
         tests:
@@ -14,6 +19,7 @@ seeds:
 
       - name: e_name
         description: "Nombre del evento."
+        data_type: varchar
         constraints:
           - type: not_null 
         tests:
@@ -21,6 +27,7 @@ seeds:
 
       - name: e_nation_name
         description: "Nombre del país donde se lleva a cabo el evento."
+        data_type: varchar
         constraints:
           - type: not_null 
         tests:
@@ -28,6 +35,7 @@ seeds:
 
       - name: e_start_date
         description: "Fecha de inicio del evento."
+        data_type: date
         constraints:
           - type: not_null 
         tests:
@@ -35,31 +43,7 @@ seeds:
 
       - name: e_end_date
         description: "Fecha de fin del evento."
-        constraints:
-          - type: not_null 
-        tests:
-          - not_null
-
-  - name: dim_Store
-    description: "Datos de tiendas generados mediante el archivo seed"
-    columns:
-      - name: st_storekey
-        description: "Clave primaria de la tienda."
-        constraints:
-          - type: primary_key
-        tests:
-          - unique
-          - not_null
-
-      - name: st_name
-        description: "Nombre de la tienda."
-        constraints:
-          - type: not_null 
-        tests:
-          - not_null
-
-      - name: st_nation_name
-        description: "Nombre del país donde está localizada la tienda."
+        data_type: date
         constraints:
           - type: not_null 
         tests:

@@ -48,4 +48,4 @@ models:
 
 seeds:
   final_project:
-    +schema: intermediate
+    +schema: staging
