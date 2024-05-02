@@ -45,3 +45,11 @@ models:
           - type: not_null
         tests:
           - not_null
+      
+      - name: N_UTC_DIFF
+        description: "Diferencia horaria con respecto a UTC."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
