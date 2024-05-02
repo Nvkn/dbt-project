@@ -10,7 +10,8 @@ WITH source_data AS (
         N_NATIONKEY,
         N_NAME,
         N_REGIONKEY,
-        cast(CONV_USD_TO_LOCAL AS FLOAT) AS N_USD_TO_LOCAL
+        cast(CONV_USD_TO_LOCAL AS FLOAT) AS N_USD_TO_LOCAL,
+        CONV_UTC_DIFFERENCE AS N_UTC_DIFF
     FROM {{ source('db_source', 'nation') }}
     JOIN {{ source('db_source', 'conversion') }} ON N_NATIONKEY = CONV_NATIONKEY
 )
