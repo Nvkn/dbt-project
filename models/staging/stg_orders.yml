@@ -48,7 +48,7 @@ models:
 
       - name: O_ORDERDATE
         description: "Fecha del pedido."
-        data_type: date
+        data_type: timestamp
         constraints:
           - type: not_null 
         tests:
