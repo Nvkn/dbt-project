@@ -32,3 +32,11 @@ models:
           - type: not_null 
         tests:
           - not_null
+      
+      - name: st_region_name
+        description: "Nombre de la región donde está localizada la tienda."
+        data_type: varchar
+        constraints:
+          - type: not_null 
+        tests:
+          - not_null

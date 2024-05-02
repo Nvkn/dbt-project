@@ -32,6 +32,14 @@ models:
           - type: not_null 
         tests:
           - not_null
+      
+      - name: e_region_name
+        description: "Nombre de la región donde se lleva a cabo el evento."
+        data_type: varchar
+        constraints:
+          - type: not_null 
+        tests:
+          - not_null
 
       - name: e_start_date
         description: "Fecha de inicio del evento."
