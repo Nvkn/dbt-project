@@ -10,7 +10,7 @@ WITH source_data AS (
         E_EVENTKEY,
         E_NAME,
         N_NAME AS E_NATION_NAME,
-        R_NAME AS E_REGION_NAME
+        R_NAME AS E_REGION_NAME,
         E_START_DATE,
         E_END_DATE
     FROM {{ ref('stg_event') }}
