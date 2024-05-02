@@ -25,14 +25,17 @@ seeds:
         tests:
           - not_null
 
-      - name: e_nation_name
-        description: "Nombre del país donde se lleva a cabo el evento."
-        data_type: varchar
+      - name: e_nationkey
+        description: "Identificador del país donde se lleva a cabo el evento."
+        data_type: integer
         constraints:
           - type: not_null 
         tests:
           - not_null
-
+          - relationships:
+              to: ref('stg_nation')
+              field: N_NATIONKEY
+          
       - name: e_start_date
         description: "Fecha de inicio del evento."
         data_type: date
@@ -73,10 +76,13 @@ seeds:
         tests:
           - not_null
 
-      - name: st_nation_name
-        description: "Nombre del país donde está localizada la tienda."
-        data_type: varchar
+      - name: st_nationkey
+        description: "Identificador del país donde está localizada la tienda."
+        data_type: integer
         constraints:
           - type: not_null 
         tests:
           - not_null
+          - relationships:
+              to: ref('stg_nation')
+              field: N_NATIONKEY

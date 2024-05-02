@@ -69,3 +69,14 @@ models:
           - type: not_null 
         tests:
           - not_null
+
+      - name: O_STOREKEY
+        description: "Clave externa de la tienda."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+          - relationships:
+              field: ST_STOREKEY
+              to: ref('stg_store')

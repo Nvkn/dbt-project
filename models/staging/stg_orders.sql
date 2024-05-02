@@ -12,5 +12,6 @@ SELECT
     O_TOTALPRICE,
     O_ORDERDATE,
     O_ORDERPRIORITY,
-    O_CLERK
+    O_CLERK,
+    FLOOR(UNIFORM(1,75,random())) AS O_STOREKEY
 FROM {{ source('db_source', 'orders') }}
