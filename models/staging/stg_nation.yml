@@ -46,9 +46,9 @@ models:
         tests:
           - not_null
       
-      - name: N_UTC_DIFF
-        description: "Diferencia horaria con respecto a UTC."
-        data_type: integer
+      - name: N_TIMEZONE
+        description: "Zona horaria."
+        data_type: varchar
         constraints:
           - type: not_null
         tests:
