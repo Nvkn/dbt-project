@@ -17,6 +17,7 @@ WITH source_data AS (
         O_ITEMKEY AS L_PARTKEY,
         O_SUPPKEY AS L_SUPPKEY,
         O_STOREKEY
+        TO_NUMBER(REGEXP_SUBSTR(O_CLERK, '\\d+')) AS O_CLERK
     FROM {{ ref('stg_orders') }}
     JOIN {{ ref('stg_lineitem') }} ON O_ORDERKEY = L_ORDERKEY
     JOIN {{ ref('stg_customer') }} ON O_CUSTKEY = C_CUSTKEY
