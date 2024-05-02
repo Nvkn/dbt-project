@@ -14,7 +14,7 @@ WITH source_data AS (
         O_TOTALPRICE AS S_TOTALPRICE_USD,
         O_TOTALPRICE*N_C.N_USD_TO_LOCAL AS S_TOTALPRICE_CUSTOMER,
         O_TOTALPRICE*N_ST.N_USD_TO_LOCAL AS S_TOTALPRICE_STORE,
-        -- Orderdatekey
+        TO_CHAR(O_ORDERDATE, 'YYYYMMDDHH24MISS')::INT AS S_Orderdatekey,
         -- Orderdatekey_customer
         -- Orderdatekey_store
         -- O_ORDERPRIORITY AS S_ORDERPRIORITY,
