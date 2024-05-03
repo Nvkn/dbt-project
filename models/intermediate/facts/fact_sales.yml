@@ -101,6 +101,14 @@ models:
         tests:
           - not_null
 
+      - name: S_ORDERPRIORITY
+        description: "Identificador del tipo de prioridad de la orden."
+        data_type: text
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
       - name: S_CLERK
         description: "Identificador del empleado que gestionó el pedido, extraído del texto original."
         data_type: integer
