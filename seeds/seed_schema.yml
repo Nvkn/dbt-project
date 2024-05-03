@@ -1,7 +1,7 @@
 version: 2
 
 seeds:
-  - name: stg_event
+  - name: src_event
     description: "Datos de eventos generados mediante el archivo seed"
     config:
       on_schema_change: 'append_new_columns'
@@ -52,7 +52,7 @@ seeds:
         tests:
           - not_null
 
-  - name: stg_store
+  - name: src_store
     description: "Datos de tiendas generados mediante el archivo seed"
     config:
       on_schema_change: 'append_new_columns'

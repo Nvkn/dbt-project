@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_event
+    description: "Tabla de staging para eventos que recoge información desde el origen 'src_event' en 'db_source_2'."
+    columns:
+      - name: e_eventkey
+        description: "Clave primaria del evento, identificador único de cada evento."
+        data_type: integer
+        tests:
+          - unique
+          - not_null
+
+      - name: e_name
+        description: "Nombre del evento."
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: e_start_date
+        description: "Fecha de inicio del evento."
+        data_type: date
+        tests:
+          - not_null
+
+      - name: e_end_date
+        description: "Fecha de finalización del evento."
+        data_type: date
+        tests:
+          - not_null
+
+      - name: e_nationkey
+        description: "Clave foránea que referencia al país asociado al evento."
+        data_type: integer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_nation')
+              field: n_nationkey

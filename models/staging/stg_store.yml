@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_store
+    description: "Tabla de staging para tiendas que recoge información desde el origen 'src_store' en 'db_source_2'."
+    columns:
+      - name: st_storekey
+        description: "Clave primaria de la tienda, identificador único de cada tienda."
+        data_type: integer
+        tests:
+          - unique
+          - not_null
+
+      - name: st_name
+        description: "Nombre de la tienda."
+        data_type: varchar
+        tests:
+          - not_null
+
+      - name: st_nationkey
+        description: "Clave foránea que referencia al país donde está localizada la tienda."
+        data_type: integer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_nation')
+              field: n_nationkey
