@@ -40,7 +40,7 @@ models:
 
       - name: O_TOTALPRICE
         description: "Precio total del pedido."
-        data_type: decimal
+        data_type: real
         constraints:
           - type: not_null 
         tests:

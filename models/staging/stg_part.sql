@@ -13,5 +13,5 @@ SELECT
   P_TYPE,
   P_SIZE,
   P_CONTAINER,
-  P_RETAILPRICE
+  CAST (P_RETAILPRICE AS REAL) AS P_RETAILPRICE
 FROM {{ source('db_source', 'part') }}

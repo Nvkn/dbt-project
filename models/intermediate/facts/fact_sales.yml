@@ -55,7 +55,7 @@ models:
 
       - name: S_TOTALPRICE_USD
         description: "Precio total del pedido en USD."
-        data_type: number
+        data_type: float
         constraints:
           - type: not_null
         tests:
@@ -153,7 +153,7 @@ models:
 
       - name: S_EXTENDEDPRICE
         description: "Precio extendido calculado antes de descuentos e impuestos."
-        data_type: number
+        data_type: float
         constraints:
           - type: not_null
         tests:
@@ -161,7 +161,7 @@ models:
 
       - name: S_DISCOUNT
         description: "Descuento aplicado al precio."
-        data_type: number
+        data_type: float
         constraints:
           - type: not_null
         tests:
@@ -169,7 +169,7 @@ models:
 
       - name: S_TAX
         description: "Impuestos aplicados sobre la venta."
-        data_type: number
+        data_type: float
         constraints:
           - type: not_null
         tests:

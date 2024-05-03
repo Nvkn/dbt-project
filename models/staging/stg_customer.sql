@@ -9,6 +9,6 @@ SELECT
   C_CUSTKEY,
   C_NAME,
   C_NATIONKEY,
-  C_ACCTBAL,
+  CAST (C_ACCTBAL AS REAL) C_ACCTBAL,
   C_MKTSEGMENT
 FROM {{ source('db_source', 'customer') }}

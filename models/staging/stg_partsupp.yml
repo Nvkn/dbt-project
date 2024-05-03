@@ -38,7 +38,7 @@ models:
 
       - name: PS_SUPPLYCOST
         description: "Costo de suministro del producto."
-        data_type: decimal
+        data_type: real
         tests:
           - not_null
   

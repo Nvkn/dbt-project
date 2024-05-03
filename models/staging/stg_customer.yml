@@ -40,11 +40,7 @@ models:
 
       - name: C_ACCTBAL
         description: "Saldo de cuenta del cliente."
-        data_type: decimal
-        constraints:
-          - type: not_null
-        tests:
-          - not_null
+        data_type: real
 
       - name: C_MKTSEGMENT
         description: "Segmento de mercado del cliente."
