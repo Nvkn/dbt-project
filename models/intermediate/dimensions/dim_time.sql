@@ -22,7 +22,7 @@ WITH date_elements AS (
             WHEN  T_Calendar_Quarter IN (1, 2) THEN 'First Half'
             ELSE 'Second Half'
         END AS T_Calendar_Half_Year,
-        TO_CHAR(O_ORDERDATE, 'YYYY') AS T_Calendar_Year,
+        EXTRACT(year FROM O_ORDERDATE) AS T_Calendar_Year,
         CASE
             WHEN T_Day_Number_of_Week IN (1, 5) THEN 'Weekday'
             ELSE 'Weekend'
@@ -46,7 +46,7 @@ WITH date_elements AS (
             WHEN  T_Calendar_Quarter IN (1, 2) THEN 'First Half'
             ELSE 'Second Half'
         END AS T_Calendar_Half_Year,
-        TO_CHAR(CONVERT_TIMEZONE('UTC', N_TIMEZONE, O_ORDERDATE), 'YYYY') AS T_Calendar_Year,
+        EXTRACT(year FROM CONVERT_TIMEZONE('UTC', N_TIMEZONE, O_ORDERDATE)) AS T_Calendar_Year,
         CASE
             WHEN T_Day_Number_of_Week IN (1, 5) THEN 'Weekday'
             ELSE 'Weekend'
@@ -74,7 +74,7 @@ WITH date_elements AS (
             WHEN  T_Calendar_Quarter IN (1, 2) THEN 'First Half'
             ELSE 'Second Half'
         END AS T_Calendar_Half_Year,
-        TO_CHAR(CONVERT_TIMEZONE('UTC', N_TIMEZONE, O_ORDERDATE), 'YYYY') AS T_Calendar_Year,
+        EXTRACT(year FROM CONVERT_TIMEZONE('UTC', N_TIMEZONE, O_ORDERDATE)) AS T_Calendar_Year,
         CASE
             WHEN T_Day_Number_of_Week IN (1, 5) THEN 'Weekday'
             ELSE 'Weekend'

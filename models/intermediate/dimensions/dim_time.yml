@@ -1,0 +1,125 @@
+version: 2
+
+models:
+  - name: dim_time
+    description: "Tabla de dimensiones de tiempo que incluye tiempos en UTC y tiempos locales del cliente y de la tienda."
+    config:
+      materialized: 'incremental'
+      on_schema_change: 'append_new_columns'
+      unique_key: 'T_TIMEKEY'
+      contract:
+        enforced: true
+
+    columns:
+      - name: T_Timekey
+        description: "Clave única de tiempo, combinación de la fecha y hora hasta segundos."
+        data_type: integer
+        constraints:
+          - type: primary_key
+        tests:
+          - unique
+          - not_null
+
+      - name: T_SQL_Date_Stamp
+        description: "Marca de tiempo SQL para registros, refleja el tiempo exacto en UTC o local."
+        data_type: timestamp
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Date
+        description: "La fecha en formato YYYY-MM-DD."
+        data_type: date
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Day_Number_of_Week
+        description: "Número del día de la semana, donde 1 es Domingo y 7 es Sábado."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Day_Number_of_Month
+        description: "Número de día en el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Day_Number_of_Year
+        description: "Número del día en el año."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Week_Number_in_Year
+        description: "Número de semana en el año."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Month_Name
+        description: "Nombre del mes."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Month_Number_In_Year
+        description: "Número del mes en el año."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Year_Month
+        description: "Combinación de año y mes en formato YYYY-MM."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Quarter
+        description: "Trimestre del año."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Year
+        description: "Año calendario."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Calendar_Half_Year
+        description: "Semestre del año, determinado por el trimestre."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: T_Weekday_Indicator
+        description: "Indicador si el día es fin de semana o día laboral."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null

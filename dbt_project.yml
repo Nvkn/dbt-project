@@ -48,4 +48,5 @@ models:
 
 seeds:
   final_project:
-    +schema: staging
+    +database: db_source
+    +schema: source_schema_2

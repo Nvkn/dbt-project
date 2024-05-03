@@ -1,0 +1,226 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: "Tabla de hechos que registra detalles de ventas, incluyendo precios en diferentes monedas, cantidades, descuentos, impuestos y más."
+    config:
+      materialized: 'incremental'
+      on_schema_change: 'append_new_columns'
+      unique_key: 'S_ORDERKEY || S_LINENUMBER' 
+      contract:
+        enforced: true
+
+    columns:
+      - name: S_ORDERKEY
+        description: "Clave primaria del pedido."
+        data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_ORDERS (O_ORDERKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: O_ORDERKEY
+              to: ref('stg_orders')
+
+      - name: S_LINENUMBER
+        description: "Número de línea del pedido."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_CUSTKEY
+        description: "Clave foránea que referencia al cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_CUSTOMER (C_CUSTKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: C_CUSTKEY
+              to: ref('stg_customer')
+
+      - name: S_ORDERSTATUS
+        description: "Estado del pedido."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_TOTALPRICE_USD
+        description: "Precio total del pedido en USD."
+        data_type: number
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_TOTALPRICE_CUSTOMER
+        description: "Precio total del pedido convertido a la moneda local del cliente."
+        data_type: float
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_TOTALPRICE_STORE
+        description: "Precio total del pedido convertido a la moneda local de la tienda."
+        data_type: float
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_Orderdatekey
+        description: "Clave de fecha del pedido en formato YYYYMMDDHH24MISS como entero."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_Orderdatekey_Customer
+        description: "Clave de fecha del pedido convertida a la zona horaria del cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_Orderdatekey_Store
+        description: "Clave de fecha del pedido convertida a la zona horaria de la tienda."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_CLERK
+        description: "Identificador del empleado que gestionó el pedido, extraído del texto original."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_ITEMKEY
+        description: "Clave foránea que referencia al ítem vendido."
+        data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_PART (P_PARTKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: P_PARTKEY
+              to: ref('stg_part')
+
+      - name: S_SUPPKEY
+        description: "Clave foránea que referencia al proveedor del ítem."
+        data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_SUPPLIER (S_SUPPKEY)"
+        tests:
+          - not_null
+          - relationships:
+              field: S_SUPPKEY
+              to: ref('stg_supplier')
+
+      - name: S_QUANTITY
+        description: "Cantidad de ítems vendidos."
+        data_type: number
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_EXTENDEDPRICE
+        description: "Precio extendido calculado antes de descuentos e impuestos."
+        data_type: number
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_DISCOUNT
+        description: "Descuento aplicado al precio."
+        data_type: number
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_TAX
+        description: "Impuestos aplicados sobre la venta."
+        data_type: number
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_LINESTATUS
+        description: "Estado de la línea."
+        data_type: text
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_OPERATIONTYPE
+        description: "Tipo de operación, puede ser venta o devolución."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_DELIVERYCOMPLIANCE
+        description: "Indicador de cumplimiento de entrega basado en los días entre la fecha de compromiso y la recepción."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: S_EVENTKEY
+        description: "Clave foránea que referencia a un evento relacionado con la venta."
+        data_type: integer
+        constraints:
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_EVENT (E_EVENTKEY)"
+        tests:
+          - relationships:
+              field: E_EVENTKEY
+              to: ref('dim_event')
+
+      - name: S_STOREKEY
+        description: "Clave foránea que referencia a la tienda donde se realizó la venta."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+          - relationships:
+              field: ST_STOREKEY
+              to: ref('dim_store')
+
+      - name: S_SHIPMODE
+        description: "Modo de envío utilizado para la entrega del pedido."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+    constraints:
+      - type: primary_key
+        columns: [S_ORDERKEY, S_LINENUMBER]
