@@ -1,0 +1,112 @@
+version: 2
+
+models:
+  - name: agg_store_sales_by_month
+    description: "Agregado mensual de ventas por tienda que resume las métricas clave de ventas, cantidad de artículos, y descuentos, en el contexto mensual."
+    config:
+      materialized: 'incremental'
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
+
+    columns:
+      - name: store_key
+        description: "Clave única de la tienda, referenciada desde dim_store."
+        data_type: integer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_store')
+              field: ST_STOREKEY
+
+      - name: t_calendar_year_month
+        description: "Año y mes del calendario en el que se registran las ventas, en formato YYYYMM."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: store_name
+        description: "Nombre de la tienda."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: total_price_orders
+        description: "Total de ventas acumuladas por la tienda en el mes, en la moneda local de la tienda."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_price_order
+        description: "Precio promedio por orden en la tienda durante el mes especificado."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_distinct_items_in_order
+        description: "Promedio de ítems distintos por orden en la tienda durante el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: distinct_items_in_order_during_event
+        description: "Número de ítems distintos vendidos durante eventos en el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_amount_items_in_order
+        description: "Promedio de cantidad total de ítems por orden en la tienda durante el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: total_amount_items_sold
+        description: "Cantidad total de ítems vendidos en la tienda durante el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: average_discount
+        description: "Promedio de descuento aplicado a los ítems vendidos en la tienda durante el mes."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: num_sales
+        description: "Número total de ventas (órdenes completadas) en la tienda durante el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: num_return
+        description: "Número total de devoluciones (órdenes devueltas) en la tienda durante el mes."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+    constraints:
+      - type: primary_key
+        columns: [store_key, t_calendar_year_month]

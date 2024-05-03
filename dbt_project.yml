@@ -47,7 +47,7 @@ models:
       +materialized: incremental
     analytics:
       +schema: analytics
-      +materialized: view
+      +materialized: incremental
 
 seeds:
   final_project:
