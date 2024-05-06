@@ -1,6 +1,6 @@
 {{ config(
     materialized='incremental',
-    unique_key='STORE_KEY || STORE_SALES.T_CALENDAR_YEAR_MONTH'
+    unique_key= ['STORE_KEY', 'T_CALENDAR_YEAR_MONTH']
 ) }}
 
 WITH STORE_ORDER_SALES AS (
@@ -18,7 +18,7 @@ WITH STORE_ORDER_SALES AS (
     FROM {{ ref('fact_sales') }}
     JOIN {{ ref('dim_store') }} ON S_STOREKEY = ST_STOREKEY
     JOIN {{ ref('dim_time') }} ON T_TIMEKEY = S_ORDERDATEKEY_STORE
-    GROUP BY ST_STOREKEY, S_ORDERKEY, T_CALENDAR_YEAR_MONTH
+    GROUP BY ST_STOREKEY, S_ORDERKEY, T_CALENDAR_YEAR_MONTH_ORDER
 ), STORE_SALES AS (
     SELECT
         STORE_KEY,
