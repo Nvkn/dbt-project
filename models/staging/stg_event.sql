@@ -2,8 +2,7 @@
 
 {{ config(
     materialized='incremental',
-    unique_key='e_eventkey',
-    on_schema_change='ignore'
+    unique_key='e_eventkey'
 ) }}
 
 WITH source_data AS (

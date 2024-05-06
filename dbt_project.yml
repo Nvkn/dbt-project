@@ -45,6 +45,9 @@ models:
     intermediate:
       +schema: intermediate
       +materialized: incremental
+    analytics:
+      +schema: analytics
+      +materialized: incremental
 
 seeds:
   final_project:

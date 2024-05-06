@@ -2,11 +2,17 @@ version: 2
 
 models:
   - name: stg_event
-    description: "Tabla de staging para eventos que recoge información desde el origen 'src_event' en 'db_source_2'."
+    description: "Tabla de staging para eventos que recoge información desde el origen 'src_event'."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: e_eventkey
         description: "Clave primaria del evento, identificador único de cada evento."
         data_type: integer
+        constraints:
+          - type: primary_key
         tests:
           - unique
           - not_null

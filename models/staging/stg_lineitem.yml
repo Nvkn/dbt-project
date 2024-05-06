@@ -57,7 +57,7 @@ models:
 
       - name: L_QUANTITY
         description: "Cantidad."
-        data_type: decimal
+        data_type: integer
         constraints:
           - type: not_null
         tests:
@@ -65,7 +65,7 @@ models:
 
       - name: L_EXTENDEDPRICE
         description: "Precio extendido."
-        data_type: decimal
+        data_type: real
         constraints:
           - type: not_null
         tests:
@@ -73,11 +73,11 @@ models:
 
       - name: L_DISCOUNT
         description: "Descuento."
-        data_type: decimal
+        data_type: real
 
       - name: L_TAX
         description: "Impuesto."
-        data_type: decimal
+        data_type: real
 
       - name: L_RETURNFLAG
         description: "Indicador de devolución."

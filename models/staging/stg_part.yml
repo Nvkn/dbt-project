@@ -67,7 +67,7 @@ models:
 
       - name: P_RETAILPRICE
         description: "Precio de venta al por menor del producto."
-        data_type: decimal
+        data_type: real
         constraints:
           - type: not_null
         tests:

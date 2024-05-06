@@ -43,7 +43,7 @@ models:
 
       - name: C_ACCTBAL
         description: "Saldo de la cuenta del cliente."
-        data_type: decimal
+        data_type: real
         constraints:
           - type: not_null
         tests:
