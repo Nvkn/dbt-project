@@ -12,5 +12,19 @@ sources:
       - name: partsupp
       - name: supplier
       - name: nation
+        freshness: 
+          null
       - name: region
+        freshness: 
+          null
       - name: conversion
+        freshness: 
+          null
+    freshness: 
+      warn_after:
+        count: 30
+        period: minute
+      error_after:
+        count: 24
+        period: hour
+    
