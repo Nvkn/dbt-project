@@ -47,7 +47,10 @@ models:
       +materialized: incremental
     analytics:
       +schema: analytics
-      +materialized: incremental
+      +materialized: dynamic_table
+      +on_configuration_change: apply
+      +target_lag: 1 days
+      +snowflake_warehouse: transforming
 
 seeds:
   final_project:

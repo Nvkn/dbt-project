@@ -4,7 +4,7 @@ models:
   - name: agg_store_sales_by_month
     description: "Agregado mensual de ventas por tienda que resume las métricas clave de ventas, cantidad de artículos, y descuentos, en el contexto mensual."
     config:
-      materialized: 'incremental'
+      materialized: 'dynamic_table'
       on_schema_change: 'append_new_columns'
       contract:
         enforced: true
