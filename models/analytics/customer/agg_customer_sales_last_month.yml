@@ -1,0 +1,100 @@
+version: 2
+
+models:
+  - name: customer_sales_last_month
+    description: "Resumen de ventas por cliente que incluye diversas métricas clave de ventas y cantidad de artículos vendidos."
+    config:
+      materialized: 'view'
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
+
+    columns:
+      - name: c_custkey
+        description: "Clave única del cliente, referenciada desde dim_customer."
+        data_type: integer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customer')
+              field: C_CUSTKEY
+
+      - name: c_name
+        description: "Nombre del cliente."
+        data_type: varchar
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: total_price_orders
+        description: "Total de ventas acumuladas por el cliente, en la moneda local."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_price_order
+        description: "Precio promedio de las órdenes del cliente."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_distinct_items_in_order
+        description: "Promedio de ítems distintos por orden del cliente."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: distinct_items_in_order_during_event
+        description: "Número de ítems distintos vendidos durante eventos por el cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: avg_amount_items_in_order
+        description: "Promedio de cantidad total de ítems por orden del cliente."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: total_amount_items_sold
+        description: "Cantidad total de ítems vendidos por el cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: average_discount
+        description: "Promedio de descuento aplicado a los ítems vendidos por el cliente."
+        data_type: real
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: num_sales
+        description: "Número total de ventas (órdenes completadas) por el cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
+
+      - name: num_return
+        description: "Número total de devoluciones (órdenes devueltas) por el cliente."
+        data_type: integer
+        constraints:
+          - type: not_null
+        tests:
+          - not_null
