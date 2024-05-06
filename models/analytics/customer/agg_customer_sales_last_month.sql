@@ -1,6 +1,8 @@
 {{ config(
-    materialized='view',
-    unique_key= ['STORE_KEY', 'T_CALENDAR_YEAR_MONTH']
+    materialized='dynamic_table',
+    unique_key= ['C_CUSTKEY'],
+    pre_hook = "use schema dbt_project.dbt_analytics",
+    post_hook = "drop table if exists DBT_PROJECT.DBT_ANALYTICS.AGG_STORE_SALES_BY_MONTH__dbt_backup cascade"
 ) }}
 
 WITH CUSTOMER_ORDER_SALES AS (
