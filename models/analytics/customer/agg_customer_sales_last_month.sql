@@ -2,7 +2,7 @@
     materialized='dynamic_table',
     unique_key= ['C_CUSTKEY'],
     pre_hook = "use schema dbt_project.dbt_analytics",
-    post_hook = "drop table if exists DBT_PROJECT.DBT_ANALYTICS.AGG_STORE_SALES_BY_MONTH__dbt_backup cascade"
+    post_hook = "drop table if exists DBT_PROJECT.DBT_ANALYTICS.AGG_CUSTOMER_SALES_LAST_MONTH__DBT_BACKUP cascade"
 ) }}
 
 WITH CUSTOMER_ORDER_SALES AS (

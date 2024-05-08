@@ -16,13 +16,8 @@ models:
         data_type: integer
         constraints:
           - type: not_null
-          - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_ORDERS (O_ORDERKEY)"
         tests:
           - not_null
-          - relationships:
-              field: O_ORDERKEY
-              to: ref('stg_orders')
 
       - name: S_LINENUMBER
         description: "Número de línea del pedido."
@@ -38,12 +33,12 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_CUSTOMER (C_CUSTKEY)"
+            expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_CUSTOMER (C_CUSTKEY)"
         tests:
           - not_null
           - relationships:
               field: C_CUSTKEY
-              to: ref('stg_customer')
+              to: ref('dim_customer')
 
       - name: S_ORDERSTATUS
         description: "Estado del pedido."
@@ -82,24 +77,39 @@ models:
         data_type: integer
         constraints:
           - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_TIME (T_TIMEKEY)"
         tests:
           - not_null
+          - relationships:
+              field: T_TIMEKEY
+              to: ref('dim_time')
+          
 
       - name: S_Orderdatekey_Customer
         description: "Clave de fecha del pedido convertida a la zona horaria del cliente."
         data_type: integer
         constraints:
           - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_TIME (T_TIMEKEY)"
         tests:
           - not_null
-
+          - relationships:
+              field: T_TIMEKEY
+              to: ref('dim_time')
       - name: S_Orderdatekey_Store
         description: "Clave de fecha del pedido convertida a la zona horaria de la tienda."
         data_type: integer
         constraints:
           - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_TIME (T_TIMEKEY)"
         tests:
           - not_null
+          - relationships:
+              field: T_TIMEKEY
+              to: ref('dim_time')
 
       - name: S_ORDERPRIORITY
         description: "Identificador del tipo de prioridad de la orden."
@@ -122,26 +132,22 @@ models:
         data_type: integer
         constraints:
           - type: not_null
-          - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_PART (P_PARTKEY)"
         tests:
           - not_null
           - relationships:
-              field: P_PARTKEY
-              to: ref('stg_part')
+              field: I_ITEMKEY
+              to: ref('dim_items')
 
       - name: S_SUPPKEY
         description: "Clave foránea que referencia al proveedor del ítem."
         data_type: integer
         constraints:
           - type: not_null
-          - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_SUPPLIER (S_SUPPKEY)"
         tests:
           - not_null
           - relationships:
-              field: S_SUPPKEY
-              to: ref('stg_supplier')
+              field: I_SUPPKEY
+              to: ref('dim_items')
 
       - name: S_QUANTITY
         description: "Cantidad de ítems vendidos."
@@ -204,7 +210,7 @@ models:
         data_type: integer
         constraints:
           - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_EVENT (E_EVENTKEY)"
+            expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_EVENT (E_EVENTKEY)"
         tests:
           - relationships:
               field: E_EVENTKEY
@@ -232,3 +238,6 @@ models:
     constraints:
       - type: primary_key
         columns: [S_ORDERKEY, S_LINENUMBER]
+      - type: foreign_key
+        columns: [S_ITEMKEY, S_SUPPKEY]
+        expression: "DBT_PROJECT.DBT_INTERMEDIATE.DIM_ITEMS(I_ITEMKEY, I_SUPPKEY)"

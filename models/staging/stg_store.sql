@@ -2,8 +2,7 @@
 
 {{ config(
     materialized='incremental',
-    unique_key='st_storekey',
-    on_schema_change='ignore'
+    unique_key='st_storekey'
 ) }}
 
 WITH source_data AS (

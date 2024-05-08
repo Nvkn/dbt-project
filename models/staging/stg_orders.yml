@@ -23,7 +23,7 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.CUSTOMER (C_CUSTKEY)"
+            expression: "DBT_PROJECT.DBT_STAGING.STG_CUSTOMER (C_CUSTKEY)"
         tests:
           - not_null
           - relationships:
@@ -75,6 +75,8 @@ models:
         data_type: integer
         constraints:
           - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_CUSTOMER (C_CUSTKEY)"
         tests:
           - not_null
           - relationships:

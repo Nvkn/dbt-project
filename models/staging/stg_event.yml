@@ -20,24 +20,34 @@ models:
       - name: e_name
         description: "Nombre del evento."
         data_type: varchar
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: e_start_date
         description: "Fecha de inicio del evento."
         data_type: date
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: e_end_date
         description: "Fecha de finalización del evento."
         data_type: date
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: e_nationkey
         description: "Clave foránea que referencia al país asociado al evento."
         data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_NATION (N_NATIONKEY)"
         tests:
           - not_null
           - relationships:

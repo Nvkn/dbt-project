@@ -14,7 +14,7 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.ORDERS (O_ORDERKEY)"
+            expression: "DBT_PROJECT.DBT_STAGING.STG_ORDERS (O_ORDERKEY)"
         tests:
           - not_null
           - relationships:
@@ -40,7 +40,7 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.SUPPLIER (S_SUPPKEY)"
+            expression: "DBT_PROJECT.DBT_STAGING.STG_SUPPLIER (S_SUPPKEY)"
         tests:
           - not_null
           - relationships:
