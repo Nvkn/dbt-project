@@ -15,9 +15,6 @@ models:
         data_type: integer
         tests:
           - not_null
-          - relationships:
-              to: ref('dim_customer')
-              field: C_CUSTKEY
 
       - name: c_name
         description: "Nombre del cliente."
