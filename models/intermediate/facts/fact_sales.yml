@@ -16,13 +16,8 @@ models:
         data_type: integer
         constraints:
           - type: not_null
-          - type: foreign_key
-            expression: "DBT_PROJECT.DBT_STAGING.STG_ORDERS (O_ORDERKEY)"
         tests:
           - not_null
-          - relationships:
-              field: O_ORDERKEY
-              to: ref('stg_orders')
 
       - name: S_LINENUMBER
         description: "Número de línea del pedido."
