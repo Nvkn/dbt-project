@@ -3,6 +3,10 @@ version: 2
 models:
   - name: stg_region
     description: "Regiones obtenidas de la tabla RAW Region de Snowflake Sample Data TPCH_SF1."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: R_REGIONKEY
         description: "Clave primaria de la región."

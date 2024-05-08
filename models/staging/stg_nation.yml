@@ -31,7 +31,7 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "DB_SOURCE.DB_SOURCE_SCHEMA.REGION (R_REGIONKEY)"
+            expression: "DBT_PROJECT.DBT_STAGING.STG_REGION (R_REGIONKEY)"
         tests:
           - not_null
           - relationships:

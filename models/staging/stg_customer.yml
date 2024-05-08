@@ -31,7 +31,7 @@ models:
         constraints:
           - type: not_null
           - type: foreign_key
-            expression: "db_source.db_source_schema.nation (N_NATIONKEY)"
+            expression: "DBT_PROJECT.DBT_STAGING.STG_NATION (N_NATIONKEY)"
         tests:
           - not_null
           - relationships:

@@ -2,11 +2,17 @@ version: 2
 
 models:
   - name: stg_store
-    description: "Tabla de staging para tiendas que recoge información desde el origen 'src_store' en 'db_source_2'."
+    description: "Tabla de staging para tiendas que recoge información desde el origen src_store en db_source_2."
+    config:
+      on_schema_change: 'append_new_columns'
+      contract:
+        enforced: true
     columns:
       - name: st_storekey
         description: "Clave primaria de la tienda, identificador único de cada tienda."
         data_type: integer
+        constraints:
+          - type: not_null
         tests:
           - unique
           - not_null
@@ -14,12 +20,18 @@ models:
       - name: st_name
         description: "Nombre de la tienda."
         data_type: varchar
+        constraints:
+          - type: not_null
         tests:
           - not_null
 
       - name: st_nationkey
         description: "Clave foránea que referencia al país donde está localizada la tienda."
         data_type: integer
+        constraints:
+          - type: not_null
+          - type: foreign_key
+            expression: "DBT_PROJECT.DBT_STAGING.STG_NATION (N_NATIONKEY)"
         tests:
           - not_null
           - relationships:
