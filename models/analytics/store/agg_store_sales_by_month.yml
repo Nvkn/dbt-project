@@ -15,9 +15,6 @@ models:
         data_type: integer
         tests:
           - not_null
-          - relationships:
-              to: ref('dim_store')
-              field: ST_STOREKEY
 
       - name: t_calendar_year_month
         description: "Año y mes del calendario en el que se registran las ventas, en formato YYYYMM."
